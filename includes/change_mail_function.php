@@ -113,3 +113,32 @@ class AdminNotice {
             delete_option(self::NOTICE_FIELD);
         }
     }
+
+     // Display error notice
+    public static function display_error($message) {
+        self::update_option($message, 'notice-error');
+    }
+
+    // Display warning notice
+    public static function display_warning($message) {
+        self::update_option($message, 'notice-warning');
+    }
+
+    // Display info notice
+    public static function display_info($message) {
+        self::update_option($message, 'notice-info');
+    }
+
+    // Display success notice
+    public static function display_success($message) {
+        self::update_option($message, 'notice-success');
+    }
+
+    // Update admin notice
+    protected static function update_option($message, $noticeLevel) {
+        update_option(self::NOTICE_FIELD, [
+            'message' => $message,
+            'notice-level' => $noticeLevel
+        ]);
+    }
+}
