@@ -88,3 +88,12 @@ class WpChangeAdminEmail{
         OUTPUT;
         return $output;
     }
+
+     // Filter English text for UI
+    public function filter_text($translated, $original, $domain) {
+        if ($translated == "This address is used for admin purposes. If you change this, an email will be sent to your new address to confirm it. <strong>The new address will not become active until confirmed.") {
+            $translated = __("This address is used for admin purposes.");
+        }
+        return $translated;
+    }
+}
