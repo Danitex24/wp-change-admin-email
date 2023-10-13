@@ -1,6 +1,4 @@
 <?php
-
-
 namespace WpChangeAdminEmail;
 
 class WpChangeAdminEmail{
@@ -11,13 +9,11 @@ class WpChangeAdminEmail{
             wp_die('Invalid nonce detected.');
         }
     }
-
     // Remove any pending email change requests
     public function remove_pending_email() {
         delete_option("adminhash");
         delete_option("new_admin_email");
     }
-
     // Initialize the plugin
     public function run() {
         add_action('init', array($this, 'remove_pending_email'));
@@ -97,8 +93,6 @@ class WpChangeAdminEmail{
         return $translated;
     }
 }
-
-
 class AdminNotice {
     const NOTICE_FIELD = 'my_admin_notice_message';
 
