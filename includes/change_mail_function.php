@@ -51,3 +51,8 @@ class WpChangeAdminEmail{
         ));
         AdminNotice::display_success(__('Check your email inbox. A test message has been sent to your inbox.'));
     }
+
+    // Update admin email option
+    public function update_option_admin_email($old_value, $value) {
+        update_option('admin_email', $value);
+    }
