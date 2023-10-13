@@ -7,7 +7,7 @@ class WpChangeAdminEmailPlugin{
 
     // Verify nonce for security
     public function verify_nonce() {
-        if (!wp_verify_nonce($_POST['wp-change-admin-email-test-email-nonce'], 'wp-change-admin-email')) {
+        if (!wp_verify_nonce($_POST['change-admin-email-test-email-nonce'], 'change-admin-email')) {
             wp_die('Invalid nonce detected.');
         }
     }
