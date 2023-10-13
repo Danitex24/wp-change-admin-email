@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Wp Change Admin Email
  * Description: WP Change Admin Email: Modify site admin email without email confirmation. Ideal for testing and localhost setups.
@@ -8,14 +7,11 @@
  * Author:      Daniel Abughdyer
  * Author URI:  https://www.codeable.io/developers/daniel-abughdyer
  */
-
-
 if (!defined('ABSPATH')) {
 
   exit; // Exit if accessed directly.
 
 }
-
 // enable error logging and track all errors
 
 ini_set('log_errors', 1);
