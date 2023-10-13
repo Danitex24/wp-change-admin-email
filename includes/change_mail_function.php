@@ -56,3 +56,14 @@ class WpChangeAdminEmail{
     public function update_option_admin_email($old_value, $value) {
         update_option('admin_email', $value);
     }
+
+    // Modify the options-general.php form
+    public function modify_options_general_form() {
+        if (function_exists('get_current_screen')) {
+            $screen = get_current_screen();
+            if ($screen->base == "options-general") {
+                add_filter('gettext', array($this, 'filter_text'), 10, 3);
+                echo ($this->return_jquery());
+            }
+        }
+    }
