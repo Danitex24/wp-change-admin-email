@@ -1,7 +1,9 @@
 <?php
-namespace WpChangeAdminEmail;
+namespace WpChangeAdminEmailPlugin;
+$WpChangeAdminEmailPlugin = new WpChangeAdminEmailPlugin;
+$WpChangeAdminEmailPlugin->run();
 
-class WpChangeAdminEmail{
+class WpChangeAdminEmailPlugin{
 
     // Verify nonce for security
     public function verify_nonce() {
@@ -70,7 +72,7 @@ class WpChangeAdminEmail{
         $output = <<<OUTPUT
         <script>
         jQuery(document).ready(function(){
-            var insertInputButton = "<input type='submit' class='button button-primary' name='changeAdminEmailSubmit' id='changeAdminEmailSubmitButton' value='Test Email' />";
+            var insertInputButton = "<input type='submit' class='button button-primary' name='changeAdminEmailSubmit' id='changeAdminEmailSubmitButton' value='Test Email Now' />";
             jQuery(insertInputButton).insertAfter("#new-admin-email-description");
             
             jQuery("#changeAdminEmailSubmitButton").click(function(event) {
