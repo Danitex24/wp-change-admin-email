@@ -97,3 +97,19 @@ class WpChangeAdminEmail{
         return $translated;
     }
 }
+
+
+class AdminNotice {
+    const NOTICE_FIELD = 'my_admin_notice_message';
+
+    // Display admin notice
+    public function display_admin_notice() {
+        $option = get_option(self::NOTICE_FIELD);
+        $message = isset($option['message']) ? $option['message'] : false;
+        $noticeLevel = !empty($option['notice-level']) ? $option['notice-level'] : 'notice-error';
+
+        if ($message) {
+            echo "<div class='notice {$noticeLevel} is-dismissible'><p>{$message}</p></div>";
+            delete_option(self::NOTICE_FIELD);
+        }
+    }
