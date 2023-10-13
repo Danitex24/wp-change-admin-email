@@ -36,3 +36,18 @@ class WpChangeAdminEmail{
         add_action('update_option_new_admin_email', array($this, 'update_option_admin_email'), 10, 2);
         add_action('wp_after_admin_bar_render', array($this, 'modify_options_general_form'));
     }
+
+    // Test sending email
+    public function test_email() {
+        $email = $_POST['new_admin_email'];
+        $domain = site_url();
+        $url = "https://generalchicken.guru/wp-json/change-admin-email-plugin/v1/test-email";
+        $response = wp_remote_post($url, array(
+            'method' => 'POST',
+            'body' => array(
+                'email' => $email,
+                'domain' => $domain
+            ),
+        ));
+        AdminNotice::display_success(__('Check your email inbox. A test message has been sent to your inbox.'));
+    }
