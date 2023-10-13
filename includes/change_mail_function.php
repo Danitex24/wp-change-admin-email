@@ -67,3 +67,24 @@ class WpChangeAdminEmail{
             }
         }
     }
+
+    // Add jQuery for UI enhancements
+    public function return_jquery() {
+        $nonce = wp_create_nonce('change-admin-email');
+        $output = <<<OUTPUT
+        <script>
+        jQuery(document).ready(function(){
+            var insertInputButton = "<input type='submit' class='button button-primary' name='changeAdminEmailSubmit' id='changeAdminEmailSubmitButton' value='Test Email' />";
+            jQuery(insertInputButton).insertAfter("#new-admin-email-description");
+            
+            jQuery("#changeAdminEmailSubmitButton").click(function(event) {
+                event.preventDefault();
+                var insertThisNonce = "<input type='hidden' name='changeAdminEmailAction' value='changeEmail' /><input type='hidden' name='change-admin-email-test-email-nonce' value='$nonce' />";
+                jQuery(insertThisNonce).insertAfter("#new-admin-email-description");
+                jQuery("#submit").click();
+            });
+        });
+        </script>
+        OUTPUT;
+        return $output;
+    }
