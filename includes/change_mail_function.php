@@ -11,3 +11,9 @@ class WpChangeAdminEmail{
             wp_die('Invalid nonce detected.');
         }
     }
+
+    // Remove any pending email change requests
+    public function remove_pending_email() {
+        delete_option("adminhash");
+        delete_option("new_admin_email");
+    }
