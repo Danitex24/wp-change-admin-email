@@ -38,17 +38,25 @@ class WpChangeAdminEmailPlugin{
     // Test sending email
     public function test_email() {
         $email = $_POST['new_admin_email'];
-        $domain = site_url();
-        $url = "https://generalchicken.guru/wp-json/change-admin-email-plugin/v1/test-email";
-        $response = wp_remote_post($url, array(
-            'method' => 'POST',
-            'body' => array(
-                'email' => $email,
-                'domain' => $domain
-            ),
-        ));
-        AdminNotice::display_success(__('Check your email inbox. A test message has been sent to your inbox.'));
+        
+        // let us Create the email body as an array
+        $email_data = array(
+            'to' => $email, // Email address where the test email will be sent
+            'subject' => 'Test Email Subject', // Subject of the test email
+            'message' => 'This is a test email.'. '<br>'.' If you can see this email, this means that you have successfully change your site admin email.', // Body of the test email
+            'headers' => 'Content-Type: text/html; charset=UTF-8', // Set the content type to HTML
+        );
+
+        // Send the test email to a fixed URL
+        $response = wp_mail($email_data['to'], $email_data['subject'], $email_data['message'], $email_data['headers']);
+
+        if ($response) {
+            AdminNotice::display_success(__('Check your email inbox. A test message has been sent to your inbox.'));
+        } else {
+            AdminNotice::display_error(__('Failed to send the test email. Please check your email settings.'));
+        }
     }
+
 
     // Update admin email option
     public function update_option_admin_email($old_value, $value) {
