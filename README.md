@@ -1,3 +1,4 @@
+[![trophy](https://github-profile-trophy.vercel.app/?username=Danitex24&theme=onedark)](https://github.com/ryo-ma/github-profile-trophy)
 # WP Change Admin Email
 == Description ==
 
